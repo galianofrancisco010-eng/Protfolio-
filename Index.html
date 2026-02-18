@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meu Portfólio Animado</title>
+    <link rel="stylesheet" media="screen" href="screen.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+
+    <header class="hero">
+        <h1 class="anime-text">Olá, eu sou<br>Desenvolvedor Web</h1>
+        <p class="anime-text">Criando experiências digitais.</p>
+        <div class="box-decor"></div> </header>
+
+    <section id="skills">
+        <h2 class="reveal-left">Minhas Habilidades</h2>
+        <div class="grid">
+            <div class="card reveal-bottom"><h3>JavaScript</h3><p>ES6+, DOM, APIs</p></div>
+            <div class="card reveal-bottom"><h3>CSS3</h3><p>Flexbox, Grid, Animations</p></div>
+            <div class="card reveal-bottom"><h3>Bibliotecas</h3><p>Anime.js, ScrollReveal</p></div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <h2 class="reveal-left">Meus Projetos</h2>
+        <div class="card reveal-right">
+            <h3>Portfólio V1</h3>
+            <p>Este site que você está vendo, feito com bibliotecas JS.</p>
+        </div>
+        <br>
+        <div class="card reveal-right">
+            <h3>App de Tarefas</h3>
+            <p>Um app simples usando LocalStorage.</p>
+            
+        </div>
+        <br>
+        <div class="card reveal-right">
+            <h3>Relógio v3</h3>
+            <p>Relógio digital com Dashboard.</p>
+            
+        </div>
+    </section>
+
+    <div style="height: 200px;"></div> <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+    <script src="https://unpkg.com/scrollreveal"></script>
+
+    <script>
+        // 1. CONFIGURAÇÃO DO ANIME.JS (Acontece assim que carrega)
+        // Vamos animar o texto e o quadrado
+        
+        var tl = anime.timeline({
+            easing: 'easeOutExpo',
+            duration: 750
+        });
+
+        tl.add({
+            targets: '.anime-text', // Alvo: classes de texto
+            translateY: [-50, 0],   // Vem de cima (-50px) para a posição original (0)
+            opacity: [0, 1],        // De invisível para visível
+            delay: anime.stagger(200) // Um item aparece 200ms depois do outro
+        })
+        .add({
+            targets: '.box-decor',
+            scale: [0, 1],          // Cresce do zero
+            rotate: '1turn',        // Dá uma volta completa
+            backgroundColor: '#bb86fc' // Muda de cor durante a animação
+        });
+
+        // 2. CONFIGURAÇÃO DO SCROLLREVEAL (Acontece ao rolar)
+        // Inicializa a biblioteca
+        const sr = ScrollReveal({
+            origin: 'bottom',   // Elementos vêm de baixo por padrão
+            distance: '50px',   // Distância que percorrem
+            duration: 1000,     // Duração da animação em ms
+            reset: true         // Se 'true', anima de novo sempre que rolar para cima/baixo
+        });
+
+        // Revela títulos vindo da esquerda
+        sr.reveal('.reveal-left', { origin: 'left', delay: 200 });
+
+        // Revela cards vindo de baixo com intervalo
+        sr.reveal('.reveal-bottom', { interval: 200 }); 
+
+        // Revela projetos vindo da direita
+        sr.reveal('.reveal-right', { origin: 'right', delay: 300 });
+
+    </script>
+</body>
+</html>
